@@ -1,5 +1,5 @@
 import pygame
-
+from pathlib import Path
 pygame.init()
 pygame.mixer.init()
 
@@ -14,9 +14,10 @@ def check(p):
 
 
 def music(song):
-  pygame.mixer.music.load(f"MP3/{song}.mp3")
-  pygame.mixer.music.play(loops=-1)
-
+    script_dir = Path(__file__).parent
+    song_path = script_dir / "MP3" / f"{song}.mp3"
+    pygame.mixer.music.load(str(song_path))
+    pygame.mixer.music.play(loops=-1)
 
 def next(n):
   return 1 if n == len(song_files) else n + 1
